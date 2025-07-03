@@ -1,0 +1,6 @@
+<h2>All Feedback</h2>
+<ul>
+<% feedbacks.forEach(f => { %>
+    <li><b><%= f.name %>:</b> <%= f.message %> - <i><%= f.sentiment %></i></li>
+<% }) %>
+</ul>
