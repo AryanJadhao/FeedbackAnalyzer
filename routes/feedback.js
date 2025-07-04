@@ -6,8 +6,9 @@ function analyzeSentiment(text) {
     const negativeWords = ["bad", "terrible", "worst", "sad", "poor"];
 
     let score = 0;
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
 
-    text.toLowerCase().split(/\W+/).forEach(word => { 
+    words.forEach(word => {
         if (positiveWords.includes(word)) score++;
         if (negativeWords.includes(word)) score--;
     });
@@ -23,28 +24,30 @@ router.get("/", (req, res) => {
 });
 
 router.post("/submit-feedback", async (req, res) => {
-    const { name, message } = req.body;
+  const { name, message } = req.body;
 
-    await Feedback.create({
-        name,
-        message,
-        sentiment: "pending"
-    });
+  const sentiment = analyzeSentiment(message);
 
-    const sentiment = analyzeSentiment(message);
+  const feedback = await Feedback.create({
+    name,
+    message,
+    sentiment
+  });
 
-    await Feedback.create({
-        name,
-        message,
-        sentiment
-    });
-
-    res.send("Feedback submitted!");
+  res.status(201).json({
+    message: "Feedback submitted successfully",
+    feedback
+  });
 });
 
-router.get("/all-feedback", async (req, res) => {
-    const allFeedback = await Feedback.find({});
-    res.render("all-feedback", { feedbacks: allFeedback });
+
+router.get('/all-feedback', async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find().sort({ createdAt: -1 });
+    res.json(feedbacks);
+  } catch (error) {
+    res.status(500).json({ error: 'Unable to fetch feedbacks' });
+  }
 });
 
 

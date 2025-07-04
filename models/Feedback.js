@@ -1,11 +1,23 @@
 const { Schema, model } = require('mongoose');
 
 const feedbackSchema = new Schema({
-  name: String,
-  message: String,
-  sentiment: String,
-},
- { timestamps: true }
-);
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  message: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  sentiment: {
+    type: String,
+    enum: ['positive', 'neutral', 'negative'],
+    default: 'neutral',
+  }
+}, {
+  timestamps: true 
+});
 
 module.exports = model("Feedback", feedbackSchema);
