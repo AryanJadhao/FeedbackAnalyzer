@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const session = require('express-session');
+const adminRoutes = require('./routes/admin');
 
 const feedbackRoutes = require('./routes/feedback');
 
@@ -17,7 +19,14 @@ app.set("views", path.resolve("./views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.use(session({
+  secret: 'smart-feedback-secret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use("/", feedbackRoutes);
+app.use('/admin', adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at port ${PORT}`);
