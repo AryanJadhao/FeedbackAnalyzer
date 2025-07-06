@@ -3,7 +3,7 @@ const Admin = require('../models/Admin');
 const router = express.Router();
 
 router.get('/login', (req, res) => {
-  res.render('admin-login', { error: null });
+  res.render("admin-login", { error: null, session: req.session });
 });
 
 router.post('/login', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
   req.session.isAdmin = true;
   req.session.adminEmail = admin.email;
 
-  res.redirect('/all-feedback');
+  res.redirect('/feedback');
 });
 
 router.get('/logout', (req, res) => {

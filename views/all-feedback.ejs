@@ -13,6 +13,7 @@
   </style>
 </head>
 <body class="bg-dark text-light">
+  <%- include("nav", { session: session }) %>
   <div class="container py-5">
     <h1 class="text-center display-4 fw-bold mb-5 text-warning">
       All Feedbacks
@@ -58,7 +59,7 @@
 
 
     <div class="text-center mt-4">
-      <a href="/" class="btn btn-outline-light">➕ Submit More Feedback</a>
+      <a href="/feedback" class="btn btn-outline-light">➕ Submit More Feedback</a>
     </div>
   </div>
 

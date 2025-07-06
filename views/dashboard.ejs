@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Feedback Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-dark text-light">
+  <%- include("nav", { session: session }) %>
+
+  <div class="container py-5">
+    <h1 class="text-center mb-4 text-warning display-4 fw-bold">📊 Smart Feedback Analyzer</h1>
+
+    <h3 class="text-center mb-5">Total Feedback: <span class="text-info"><%= total %></span></h3>
+
+    <div class="row align-items-center">
+      <!-- 📝 Left Half -->
+      <div class="col-md-6">
+        <h3 class="text-light">Why Feedback Matters 💬</h3>
+        <p class="lead text-light mt-3">
+          Feedback is the cornerstone of growth and progress. Whether it praises or points out areas to improve, 
+          your input helps us evolve and provide a better experience. Every voice counts — and yours makes a difference. 
+          Thank you for helping us shape a better tomorrow! 🌟
+        </p>
+
+        <div class="mt-4">
+          <a href="/feedback" class="btn btn-warning btn-lg me-3">➕ Give Feedback</a>
+          <a href="/all-feedback" class="btn btn-outline-light btn-lg">📄 View Feedback</a>
+        </div>
+      </div>
+
+      <!-- 📊 Right Half -->
+      <div class="col-md-6">
+        <canvas id="sentimentChart" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      labels: ['Positive', 'Neutral', 'Negative'],
+      datasets: [{
+        data: [<%= stats.positive %>, <%= stats.neutral %>, <%= stats.negative %>],
+        backgroundColor: ['#198754', '#ffc107', '#dc3545']
+      }]
+    };
+
+    const config = {
+      type: 'pie',
+      data: data,
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: '#ffffff'
+            }
+          }
+        }
+      }
+    };
+
+    new Chart(document.getElementById('sentimentChart'), config);
+  </script>
+</body>
+</html>
