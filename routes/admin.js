@@ -21,9 +21,14 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
+  req.session.destroy(err => {
+    if (err) {
+      console.log(err);
+      return res.redirect('/');
+    }
+    res.redirect('/admin/login');
   });
 });
+
 
 module.exports = router;

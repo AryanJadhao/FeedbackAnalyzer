@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
@@ -7,7 +8,7 @@ const adminRoutes = require('./routes/admin');
 const feedbackRoutes = require('./routes/feedback');
 
 const app = express();
-const PORT = 8001;
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect("mongodb://localhost:27017/feedbackDB")
   .then(() => console.log("MongoDB connected"))

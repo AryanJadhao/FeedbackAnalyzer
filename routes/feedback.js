@@ -2,20 +2,7 @@ const { Router } = require('express');
 const Feedback = require("../models/Feedback");
 const { requireLogin } = require('../middlewares/auth');
 
-function analyzeSentiment(text) {
-  const positiveWords = ["good", "great", "awesome", "excellent", "happy", "best"];
-  const negativeWords = ["bad", "terrible", "worst", "sad", "poor"];
-
-  let score = 0;
-  const words = text.toLowerCase().match(/\b\w+\b/g) || [];
-
-  words.forEach(word => {
-    if (positiveWords.includes(word)) score++;
-    if (negativeWords.includes(word)) score--;
-  });
-
-  return score > 0 ? "positive" : score < 0 ? "negative" : "neutral";
-}
+const analyzeSentiment = require('../utils/sentiment');
 
 const router = Router();
 
@@ -41,13 +28,14 @@ router.get("/feedback", (req, res) => {
 });
 
 router.post("/submit-feedback", async (req, res) => {
-  const { name, message } = req.body;
+  const { name, message, rating } = req.body;
 
   const sentiment = analyzeSentiment(message);
 
   const feedback = await Feedback.create({
     name,
     message,
+    rating: parseInt(rating),
     sentiment
   });
 
