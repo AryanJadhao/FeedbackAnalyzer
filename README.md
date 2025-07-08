@@ -1,3 +1,4 @@
+
 # Smart Feedback Analyzer 🧠✨
 
 A full-stack web application to collect user feedback and perform real-time sentiment analysis using Natural Language Processing (NLP).
@@ -51,3 +52,55 @@ If running locally, create an admin using a script or through manual insert.
 
 ## 📂 Project Structure
 
+```
+/models
+  └── Feedback.js
+  └── Admin.js
+/routes
+  └── feedback.js
+  └── admin.js
+/views
+  └── dashboard.ejs
+  └── feedback-form.ejs
+  └── admin-login.ejs
+/public
+  └── css / js
+.env
+server.js
+```
+
+---
+
+## ⚙️ Installation & Local Setup
+
+```bash
+git clone https://github.com/<your-username>/smart-feedback-analyzer.git
+cd smart-feedback-analyzer
+npm install
+```
+
+🔒 Create a `.env` file:
+```env
+MONGO_URI=your-mongodb-atlas-uri
+```
+
+▶️ Run the app:
+```bash
+node server.js
+```
+
+Visit: `http://localhost:3000`
+
+---
+
+## 📬 Contact
+
+Made with 💻 by **Aryan Jadhao**  
+📧 [YourEmail@example.com]  
+🔗 [LinkedIn](https://linkedin.com/in/your-link) | [GitHub](https://github.com/your-username)
+
+---
+
+## 📃 License
+
+This project is open-source and available under the [MIT License](LICENSE).
