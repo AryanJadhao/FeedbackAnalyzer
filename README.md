@@ -54,7 +54,7 @@ If running locally, create an admin using a script or through manual insert.
 ## 📬 Contact
 
 Made with 💻 by **Aryan Jadhao**  
-📧 [aryanjadhao29@gmail.com]  
-🔗 [LinkedIn]((https://www.linkedin.com/in/aryan-jadhao-83b7a42a0/)) | [GitHub]((https://github.com/AryanJadhao))
+📧 [aryanjadhao29@gmail.com](mailto:aryanjadhao29@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/aryan-jadhao-83b7a42a0/) | [GitHub](https://github.com/AryanJadhao)
 
 
