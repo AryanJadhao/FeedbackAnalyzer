@@ -54,11 +54,7 @@ If running locally, create an admin using a script or through manual insert.
 ## 📬 Contact
 
 Made with 💻 by **Aryan Jadhao**  
-📧 [YourEmail@example.com]  
-🔗 [LinkedIn](https://linkedin.com/in/your-link) | [GitHub](https://github.com/your-username)
+📧 [aryanjadhao29@gmail.com]  
+🔗 [LinkedIn]((https://www.linkedin.com/in/aryan-jadhao-83b7a42a0/)) | [GitHub]((https://github.com/AryanJadhao))
 
----
 
-## 📃 License
-
-This project is open-source and available under the [MIT License](LICENSE).
