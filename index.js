@@ -71,9 +71,15 @@ process.on('SIGTERM', () => {
   console.log('SIGTERM received. Closing server...');
   server.close(() => {
     console.log('Server closed');
-    mongoose.connection.close(false, () => {
-      console.log('MongoDB connection closed');
-      process.exit(0);
-    });
+    mongoose.connection.close(false)
+      .then(() => {
+        console.log('MongoDB connection closed');
+        process.exit(0);
+      })
+      .catch(err => {
+        console.error('Error closing MongoDB connection:', err);
+        process.exit(1);
+      });
+
   });
 });
