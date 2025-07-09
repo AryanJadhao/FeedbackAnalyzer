@@ -30,7 +30,6 @@ app.get("/", (req, res) => {
 app.use("/feedback", feedbackRoutes);
 app.use("/admin", adminRoutes);
 
-// DB connect and THEN start server
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
@@ -41,10 +40,9 @@ mongoose.connect(process.env.MONGODB_URI)
   })
   .catch(err => {
     console.error("❌ MongoDB connection failed:", err.message);
-    process.exit(1); // Prevent app from starting without DB
+    process.exit(1); 
   });
 
-// Optional: catch unhandled async errors
 process.on("unhandledRejection", err => {
   console.error("❌ Unhandled Rejection:", err);
   process.exit(1);
